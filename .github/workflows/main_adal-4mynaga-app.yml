@@ -25,6 +25,26 @@ jobs:
       packages: write
 
     steps:
+      - name: Free up disk space
+        run: |
+          echo "Disk space before cleanup:"
+          df -h
+          
+          # Remove unnecessary files to free up space
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /opt/hostedtoolcache/PyPy
+          sudo rm -rf /opt/hostedtoolcache/node
+          
+          # Clean up package managers
+          sudo apt-get clean
+          sudo apt-get autoclean
+          docker system prune -af --volumes
+          
+          echo "Disk space after cleanup:"
+          df -h
+
       - name: Checkout code
         uses: actions/checkout@v3
 
@@ -49,6 +69,13 @@ jobs:
             type=semver,pattern={{major}}.{{minor}}
             type=sha,prefix={{branch}}-
             type=raw,value=latest,enable={{is_default_branch}}
+
+      - name: Cleanup before build
+        run: |
+          echo "Final disk space check before build:"
+          df -h
+          docker system prune -af --volumes || true
+          rm -rf /tmp/* || true
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
