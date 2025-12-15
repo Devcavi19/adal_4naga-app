@@ -2,6 +2,7 @@
 .gitignore
 .dockerignore
 .env
+.env.local
 __pycache__
 *.pyc
 *.pyo
@@ -29,3 +30,12 @@ node_modules/
 .vagrant/
 Vagrant
 Vagrantfile
+*.md
+README.md
+QUICKSTART.md
+LICENSE
+.github/
+.docker/
+docker-compose.yml
+docker-compose.*.yml
+.dockerignore.backup
