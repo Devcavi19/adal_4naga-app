@@ -32,6 +32,24 @@ def health():
         'services': services_status
     }), status_code
 
+# Debug endpoint for startup diagnostics (no authentication required)
+@bp.route('/startup-status')
+def startup_status():
+    """Debug endpoint showing detailed service initialization status"""
+    return jsonify({
+        'timestamp': datetime.utcnow().isoformat(),
+        'services_initialized': current_app.config.get('SERVICES_INITIALIZED', False),
+        'rag_service': {
+            'initialized': current_app.config.get('RAG_SERVICE') is not None,
+            'value': str(type(current_app.config.get('RAG_SERVICE')))
+        },
+        'analytics_service': {
+            'initialized': current_app.config.get('ANALYTICS_SERVICE') is not None,
+            'value': str(type(current_app.config.get('ANALYTICS_SERVICE')))
+        },
+        'message': 'This endpoint shows service initialization status for debugging deployment issues'
+    }), 200
+
 def login_required(f):
     """Decorator to require login for routes"""
     @wraps(f)
