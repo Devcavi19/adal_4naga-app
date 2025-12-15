@@ -11,12 +11,26 @@ bp = Blueprint('main', __name__)
 # Health check endpoint for monitoring (no authentication required)
 @bp.route('/health')
 def health():
-    """Health check endpoint for Digital Ocean monitoring"""
+    """Health check endpoint for deployment monitoring"""
+    rag_service = current_app.config.get('RAG_SERVICE')
+    analytics_service = current_app.config.get('ANALYTICS_SERVICE')
+    
+    # Check if critical services are initialized
+    services_status = {
+        'rag_service': rag_service is not None,
+        'analytics_service': analytics_service is not None
+    }
+    
+    # All critical services must be initialized for app to be healthy
+    is_healthy = all(services_status.values())
+    status_code = 200 if is_healthy else 503
+    
     return jsonify({
-        'status': 'healthy',
+        'status': 'healthy' if is_healthy else 'degraded',
         'timestamp': datetime.utcnow().isoformat(),
-        'service': 'Adal Smart Naga Ordinances RAG Chatbot'
-    }), 200
+        'service': 'Adal Smart Naga Ordinances RAG Chatbot',
+        'services': services_status
+    }), status_code
 
 def login_required(f):
     """Decorator to require login for routes"""
