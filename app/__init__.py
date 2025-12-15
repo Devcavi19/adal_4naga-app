@@ -76,6 +76,9 @@ def create_app(config_class=Config):
         print("⚠️  App will continue but analytics features may not work")
         app.config['ANALYTICS_SERVICE'] = None
     
+    # Mark initialization as complete for health checks
+    app.config['SERVICES_INITIALIZED'] = True
+    
     # Register blueprints
     with app.app_context():
         from . import routes
