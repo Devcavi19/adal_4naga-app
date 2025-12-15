@@ -121,27 +121,42 @@ jobs:
       - name: Wait for deployment
         run: sleep 60
 
+      - name: Check startup status endpoint
+        run: |
+          startup_url="${{ secrets.AZURE_APP_URL }}/startup-status"
+          echo "📋 Checking startup status at: $startup_url"
+          curl -s "$startup_url" | head -100
+          echo ""
+
       - name: Check application health
         run: |
           health_url="${{ secrets.AZURE_APP_URL }}/health"
-          max_attempts=25
+          max_attempts=30
           attempt=1
           
           while [ $attempt -le $max_attempts ]; do
             echo "Health check attempt $attempt/$max_attempts..."
-            response=$(curl -s -o /dev/null -w "%{http_code}" $health_url)
+            response=$(curl -s -w "\n%{http_code}" "$health_url")
+            http_code=$(echo "$response" | tail -n 1)
+            body=$(echo "$response" | head -n -1)
             
-            if [ "$response" = "200" ]; then
+            echo "HTTP Response: $http_code"
+            echo "Body: $body"
+            echo ""
+            
+            if [ "$http_code" = "200" ]; then
               echo "✅ Application is healthy!"
               exit 0
             fi
             
-            echo "Application not ready yet (HTTP $response). Retrying..."
+            echo "Application not ready yet (HTTP $http_code). Retrying..."
             sleep 10
             attempt=$((attempt + 1))
           done
           
           echo "❌ Application failed health check after $max_attempts attempts"
+          echo "📋 Final diagnostic check..."
+          curl -s "${{ secrets.AZURE_APP_URL }}/startup-status" || true
           exit 1
 
       - name: Notify Slack (Optional)

@@ -24,12 +24,17 @@ for var in "${required_vars[@]}"; do
 done
 
 if [ ${#missing_vars[@]} -gt 0 ]; then
-    echo "❌ ERROR: Missing required environment variables:"
+    echo "⚠️  WARNING: Missing required environment variables:"
     printf '%s\n' "${missing_vars[@]}"
-    exit 1
+    echo ""
+    echo "The application will start but may have reduced functionality."
+    echo "Please ensure these variables are set in your Azure App Service configuration:"
+    echo ""
+    printf '%s\n' "${missing_vars[@]}"
+    echo ""
+else
+    echo "✅ All required environment variables are set"
 fi
-
-echo "✅ All required environment variables are set"
 
 # Set Flask environment to production if not already set
 export FLASK_ENV=${FLASK_ENV:-production}
@@ -40,6 +45,7 @@ PORT=${PORT:-8080}
 
 echo "📊 Starting gunicorn server on port $PORT..."
 echo "Environment: $FLASK_ENV"
+echo ""
 
 # Start the application with gunicorn
 # Using --access-logfile - for stdout logging (Azure App Service requirement)

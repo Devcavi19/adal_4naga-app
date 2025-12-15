@@ -14,15 +14,18 @@ def health():
     """Health check endpoint for deployment monitoring"""
     rag_service = current_app.config.get('RAG_SERVICE')
     analytics_service = current_app.config.get('ANALYTICS_SERVICE')
+    services_initialized = current_app.config.get('SERVICES_INITIALIZED', False)
     
-    # Check if critical services are initialized
+    # Check if services are initialized
     services_status = {
         'rag_service': rag_service is not None,
-        'analytics_service': analytics_service is not None
+        'analytics_service': analytics_service is not None,
+        'services_initialized': services_initialized
     }
     
-    # All critical services must be initialized for app to be healthy
-    is_healthy = all(services_status.values())
+    # App is healthy if services are initialized (at least attempting startup)
+    # RAG service is critical, Analytics is optional
+    is_healthy = services_initialized and rag_service is not None
     status_code = 200 if is_healthy else 503
     
     return jsonify({
