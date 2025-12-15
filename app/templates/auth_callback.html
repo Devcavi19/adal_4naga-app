@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authenticating - ADAL</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/adal_iconb.png') }}">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .loader {
+            text-align: center;
+            color: white;
+        }
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .error {
+            color: #fee2e2;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="loader">
+        <div class="spinner"></div>
+        <p id="status">Completing authentication...</p>
+        <p class="error" id="error" style="display: none;"></p>
+    </div>
+    
+    <script>
+        async function handleAuth() {
+            try {
+                // Check for hash fragment (access_token from Supabase)
+                const hashParams = new URLSearchParams(window.location.hash.substring(1));
+                const accessToken = hashParams.get('access_token');
+                
+                if (accessToken) {
+                    // Send token to backend to create session
+                    const response = await fetch('/api/auth/callback/session', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ access_token: accessToken })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (response.ok && data.success) {
+                        window.location.href = data.redirect || '/chat';
+                    } else {
+                        throw new Error(data.error || 'Authentication failed');
+                    }
+                } else {
+                    // Check for error in hash
+                    const error = hashParams.get('error');
+                    const errorDescription = hashParams.get('error_description');
+                    
+                    if (error) {
+                        throw new Error(errorDescription || error);
+                    }
+                    
+                    // No token found
+                    throw new Error('No authentication token received');
+                }
+            } catch (error) {
+                console.error('Auth error:', error);
+                document.getElementById('status').textContent = 'Authentication failed';
+                const errorEl = document.getElementById('error');
+                errorEl.textContent = error.message;
+                errorEl.style.display = 'block';
+                
+                // Redirect to login after 3 seconds
+                setTimeout(() => {
+                    window.location.href = '/login?error=auth_failed';
+                }, 3000);
+            }
+        }
+        
+        // Run when page loads
+        window.addEventListener('load', handleAuth);
+    </script>
+</body>
+</html>

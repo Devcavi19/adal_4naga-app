@@ -1,0 +1,34 @@
+webcrawl-naga/
+downloaded_pdfs/
+env/
+.env
+.vscode/
+gdrive_pdf/
+ragENV/
+__pycache__/
+pdf_processors/
+data/
+hacknagaENV/
+hacknaga_ui/
+.git-credentials
+bm25_ordinances/
+venv/
+# Azure-specific files
+.azure/
+*.publishsettings
+PublishSettings/
+*.azurewebsites.net.publishsettings
+azure-pipelines.yml.local
+.deployment
+
+# Local Azure development
+local.settings.json
+*.funcignore
+
+# Azure App Insights
+ApplicationInsights.config
+
+# Build outputs
+build/
+dist/
+*.egg-info/

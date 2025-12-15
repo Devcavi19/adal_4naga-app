@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat With AI - Student</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/adal_iconb.png') }}">
+    <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='img/adal_iconb.png') }}">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='img/adal_iconb.png') }}">
+   
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Add Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- Add Highlight.js for code syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar collapsed" id="sidebar">
+            <!-- Sidebar Header -->
+            <div class="sidebar-header">
+                <!-- Expandable Logo Icon (visible when collapsed) -->
+                <button class="sidebar-expand-btn robot-icon-btn" id="robot-expand-btn" title="Expand sidebar">
+                    <img src="{{ url_for('static', filename='img/adal_iconb.png') }}" alt="Adal" class="robot-logo">
+                    <i class="fas fa-bars hover-icon"></i>
+                </button>
+                
+                <!-- Logo and Close Button (visible when expanded) -->
+                <div class="logo-container">
+                    <div class="logo">
+                        <img src="{{ url_for('static', filename='img/adal_iconb.png') }}" alt="Adal" class="logo-image">
+                    </div>
+                    <button class="sidebar-collapse-btn" id="sidebar-collapse-btn" title="Collapse sidebar">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Sidebar Navigation -->
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item" id="new-chat-btn" title="New Chat">
+                    <i class="fas fa-plus"></i>
+                    <span class="sidebar-text">New Chat</span>
+                </a>
+                
+                <div class="nav-divider"></div>
+                
+                <!-- Chat History Section -->
+                <div class="chat-history-section">
+                    <div class="nav-section-title">
+                        <i class="fas fa-history"></i>
+                        <span class="sidebar-text">History</span>
+                    </div>
+                    
+                    <div id="chat-history-list" class="chat-history-list">
+                        <!-- Chat history will be dynamically loaded from the database -->
+                    </div>
+                </div>
+            </nav>
+            
+            <!-- Sidebar Footer -->
+            <div class="sidebar-footer">
+                <a href="#" class="nav-item" id="feedback-btn" title="Feedback">
+                    <i class="fas fa-comment-dots"></i>
+                    <span class="sidebar-text">Feedback</span>
+                </a>
+                
+                <div class="nav-divider"></div>
+                
+                <div class="user-profile" id="user-profile-trigger" title="Student Profile">
+                    <img src="https://ui-avatars.com/api/?name={{ session.user.full_name or 'Student' }}&background=10b981&color=fff" alt="User Avatar">
+                    <div class="user-info sidebar-text">
+                        <div class="user-name">{{ session.user.full_name or 'Student' }}</div>
+                        <div class="user-email">{{ session.user.email or 'student@cspc.edu.ph' }}</div>
+                    </div>
+                    <i class="fas fa-ellipsis-v dropdown-icon"></i>
+                </div>
+
+                <!-- Dropdown Menu -->
+                <div class="user-dropdown-menu" id="user-dropdown-menu">
+                    <div class="dropdown-header">
+                        <div class="dropdown-user-email">{{ session.user.email or 'student@cspc.edu.ph' }}</div>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    {% if session.user.role == 'admin' %}
+                    <button class="dropdown-item" id="dashboard-btn">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Dashboard</span>
+                    </button>
+                    <div class="dropdown-divider"></div>
+                    {% endif %}
+                    <button class="dropdown-item" id="settings-btn">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </button>
+                    <div class="dropdown-divider"></div>
+                    <button class="dropdown-item" id="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Log out</span>
+                    </button>
+                </div>
+            </div>
+        </aside>
+        <!-- End of Sidebar -->
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-header">
+                <h1>ADAL</h1>
+                <div class="header-actions">
+                    <button class="btn-icon" id="share-btn" title="Share message and prompt">
+                        <img src="https://img.icons8.com/?size=100&id=90284&format=png&color=000000" alt="Share" style="width: 20px; height: 20px;">
+                    </button>
+                </div>
+            </header>
+
+            <div class="chat-area" id="chat-area">
+                <!-- Scrollable Content Wrapper -->
+                <div class="chat-content-wrapper">
+                    <!-- Welcome Screen -->
+                    <div class="welcome-screen" id="welcome-screen">
+                        <div class="welcome-avatar">
+                            <img src="{{ url_for('static', filename='img/adal_iconb.png') }}" alt="Adal AI Logo">
+                        </div> 
+                        <h2>Welcome, Naguenians</h2>
+                        <p class="welcome-subtitle">Start a conversation with your Naga City Government AI Assistant.<br>What information about Naga City would you like to know?</p>
+                    </div>
+                    
+                    <!-- Chat Messages Area -->
+                    <div class="messages-container" id="messages-container">
+                        <!-- Messages will be appended here -->
+                    </div>
+                </div>
+                
+                <!-- Input Area - Fixed at bottom -->
+                <div class="input-container">
+                    <div class="input-wrapper">
+                        <input 
+                            type="text" 
+                            id="message-input" 
+                            placeholder="Ask me anything ..." 
+                            autocomplete="off"
+                        />
+                        <button class="input-icon-btn" title="Voice input">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                        <button class="btn-send" id="send-button" title="Send message">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+</body>
+</html>

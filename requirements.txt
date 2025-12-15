@@ -1,0 +1,32 @@
+# Python version: Python 3.12.1
+
+# Flask Web Framework
+Flask
+python-dotenv
+
+# Production WSGI Server
+gunicorn
+
+# Supabase Authentication
+supabase
+
+# Vector Database - Qdrant
+qdrant-client
+
+# Embeddings
+sentence-transformers
+
+# langchain
+langchain_core
+langchain_google_genai
+
+# BM25 Keyword Search
+rank-bm25
+
+# Google Gemini LLM
+google-generativeai
+
+# Analytics and Data Processing
+scikit-learn
+pandas
+numpy

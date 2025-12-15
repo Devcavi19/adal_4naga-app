@@ -1,0 +1,192 @@
+[
+  {
+    "query": "What are the requirements for senior citizen benefits?",
+    "search_type": "hybrid",
+    "response": "Based on Ordinance No. 2025-054 (City Near-Centenarians Incentive Ordinance), the requirements for senior citizens to receive a cash gift of Ten Thousand Pesos (P 10,000.00) on their 96th, 97th, 98th, and 99th birthdays are as follows:\n\n**Qualification (Section 3):**\n*   Must be registered with the Naga City Office for Senior Citizens Affairs (OSCA).\n*   Must be a resident of Naga City for at least five (5) years before his/her 96th birthday.\n*   To be eligible, senior citizens must register with the Naga City OSCA and reside in Naga City on or before their 90th birthday.\n*   This is consistent with the requirements under Ordinance No. 2017-052 (City Centenarians Incentive Ordinance), which mandates residency in Naga City for at least ten (10) years before their 100th birthday for centenarian incentives.\n\n**Requirements to Submit (Section 4):**\nQualified Nagueño senior citizens must submit the following to the Office of the Senior Citizens Affairs (OSCA):\n1.  Naga City OSCA issued Senior Citizen ID\n2.  Certified True Copy or PSA Copy of Birth Certificate",
+    "metrics": {
+      "retrieval_time": 1.048385,
+      "generation_time": 7.718055,
+      "total_time": 8.76644,
+      "num_retrieved": 5
+    },
+    "context": [
+      {
+        "file_name": "Ordno-2025-054-Near-Centenarian-Incentive-Ordinance_Senior-Citizens-1.pdf",
+        "score": 1.0,
+        "text_preview": "<!-- image -->\n\n<!-- image -->\n\nO\n\n<!-- image -->\n\n## Republic of the Philippines\n\n## SANGGUNIANG PANLUNGSOD\n\n## City Government of Naga\n\n## ORDINANCE NO. 2025-05.4 WWWWWWWWWWW\n\nAN ORDINANCE GRANTING TO SENIOR CITIZENS OF NAGA CITY AGED NINETY-SIX (96) TO NINETY-NINE (99) YEARS OLD A CASE GIFT OF TE"
+      },
+      {
+        "file_name": "Ordno-2025-069-Balik-Eskwela-Program.pdf",
+        "score": 0.5281276712764457,
+        "text_preview": "Table 1 of Section 3.g. | Documentary requirements of at least two (2) indicators listed in Table 1. | | c. Filipino citizen and a bona fide resident of Naga City for at least three (3) years prior to application to this Program. | Barangay Residency Registration. Certificate of Comelec or | | d. Pr"
+      },
+      {
+        "file_name": "Ordno-2025-069-Balik-Eskwela-Program.pdf",
+        "score": 0.39339175773409424,
+        "text_preview": "the higher the indigent household, the including with disabilities and children of solo score, children parents. | | Number of semesters out of school | 40% | The higher the number of semesters out of school, the higher the score, but not to exceed four (4) semesters, or such maximum number as may l"
+      },
+      {
+        "file_name": "Ordno-2025-053-ePWD-validity-for-5-Years.pdf",
+        "score": 0.22498122860974198,
+        "text_preview": "<!-- image -->\n\n<!-- image -->\n\n<!-- image -->\n\n## Republic of the Philippines\n\n## SANGGUNIANG PANLUNGSOD\n\n## City Government of Naga\n\n## ORDINANCE NO. 2025-053 WVWWWWWWWWWV\n\nAN ORDINANCE AMENDING SECTION 13 OF ORDINANCE NO. 2020-072^ KNOWN AS THE VALIDITY OF EFWD-ID FROM THREE YEARS TO FIVE YEARS P"
+      },
+      {
+        "file_name": "Ordno-2025-069-Balik-Eskwela-Program.pdf",
+        "score": 0.2246704335982275,
+        "text_preview": "the end of the year to the Trust Fund herein created. - SECTION 30. Support from the Private Sector. endeavor to encourage the private sector, civic groups, private individuals, successful scholars of the city government, and business entities with their corporate social responsibility programs, to "
+      }
+    ]
+  },
+  {
+    "query": "Tell me about ordinances related to transportation and tricycles",
+    "search_type": "hybrid",
+    "response": "Based on the provided document excerpts, here are the ordinances related to transportation and tricycles:\n\n1.  **Ordinance No. 2025-056** (Enacted August 5, 2025):\n    *   This ordinance further amends certain sections of Article XXV of Ordinance No. 93-049 (\"The Transport and Traffic Code of Naga City\"), as amended by Ordinance No. 2022-046, and repeals Ordinance No. 2025-023.\n    *   It establishes a unified route for a total of **Thirty (30) units of Special Trimobile Franchises** for the consolidated VISTODA and LAVISTODA Associations. This includes 10 units for VISTODA, 10 for LAVISTODA, and an additional 10 units.\n    *   **Approved Route:** From Langon to Ateneo de Naga University via Vistansa Subdivision and to Centro Cararayan up to the corner of San Miguel Street and Tecla San Andres-Ziga Road (San-Isidro-Cararayan Road) via Sitio Salunguigui, and vice versa. There is a **strict prohibition from entering Tecla San Andres-Ziga Road.**\n    *   The 30 franchises are to be equally divided among qualified applicants from Barangay Pacol (Deca Vistansa) and Barangay Cararayan.\n    *   Designated waiting stations are the existing authorized waiting area in Deca Vistansa for Pacol-based units, and Cararayan Proper for Cararayan-based units. Both VISTODA and LAVISTODA units are allowed to join the queue.\n    *   Associations are encouraged to unify under a single operational agreement, commit to self-regulation, discipline, and compliance with City Government policies.\n    *   The Trimobile Task Force, in coordination with the Public Safety Office (PSO) and concerned Barangay Councils, is responsible for implementation.\n\n2.  **Ordinance No. 2025-067** (Enacted September 9, 2025):\n    *   This ordinance further amends certain sections of Article XXV of Ordinance No. 93-049 (\"The Transport and Traffic Code of Naga City\"), Ordinance No. 2022-046, and **Ordinance No. 2025-056.**\n    *   Its primary purpose is to **increase the approved Route Measure Capacity (RMC) from Thirty (30) to Thirty-Three (33) units of Special Trimobile Franchises** for the consolidated VISTODA and LAVISTODA Associations, adding three (3) units.\n    *   The approved route described is identical to that in Ordinance No. 2025-056.\n    *   The division of franchises (equally among applicants from Barangay Pacol and Cararayan), encouragement for associations to unify, and designated waiting stations (Deca Vistansa and Cararayan Proper) remain the same as in Ordinance No. 2025-056.\n    *   The Trimobile Task Force, PSO, and Barangay Councils are tasked with ensuring proper implementation.\n\n3.  **Ordinance No. 2025-070** (Enacted September 23, 2025):\n    *   This ordinance, titled \"Naga City Public Transport Route Rationalization Ordinance of 2025,\" institutionalizes the approved Local Public Transport Route Plan (LPTRP) for **Public Utility Jeepney (PUJ) Class 2 units**. It approves 8 routes with a total allocation of 282 PUJ Class 2 units.\n    *   While primarily focused on jeepneys, its **Section 9 (Repealing Clause)** states that \"All ordinances, resolutions, and issuances inconsistent herewith, including provisions of the Transport and Traffic Code of Naga City that conflict with the LPTRP as approved, are hereby repealed or amended accordingly.\" This indicates that general transport and traffic regulations, including those potentially affecting tricycles as part of the broader \"Transport and Traffic Code of Naga City\" (Ordinance No. 93-049), may be modified if they conflict with the LPTRP for PUJs.\n\nThe documents provided do not contain enough information to detail the specific content of Ordinance No. 93-049 (\"The Transport and Traffic Code of Naga City\"), Ordinance No. 2022-046, or Ordinance No. 2025-023, beyond their titles and how they are amended or repealed by the more recent ordinances concerning trimobile franchises.",
+    "metrics": {
+      "retrieval_time": 1.135606,
+      "generation_time": 29.879302,
+      "total_time": 31.014908,
+      "num_retrieved": 5
+    },
+    "context": [
+      {
+        "file_name": "Ordno-2025-056-Unified-Route-for-VISTODA-and-LAVISTODA.pdf",
+        "score": 0.7160441698426669,
+        "text_preview": "1\n\n<!-- image -->\n\n<!-- image -->\n\n<!-- image -->\n\n## Republic of the Philippines\n\n## SANGGUNIANG PANLUNGSOD\n\n## City Government of Naga\n\n## ORDINANCE NO. 2025-056\n\nvvvvvvvvvvvvvvvvvvvvvv\n\nAN ORDINANCE FURTHER AMENDING CERTAIN SECTIONS OF ARTICLE XXV OF ORDINANCE NO. 93-049, OTHERWISE KNOWN AS \"THE "
+      },
+      {
+        "file_name": "Ordno-2025-067-Consolidated-VISTODA-and-LAVISTODA-Special-trimobile-Franchise-plying-Salunguigui-Cararayan.pdf",
+        "score": 0.5861496761899414,
+        "text_preview": "<!-- image -->\n\n<!-- image -->\n\n<!-- image -->\n\n## Republic of the Philippines\n\n## SANGGUNIANG PANLUNGSOD\n\n## City Goveramentof Naga\n\n## ORDINANCE NO. 2025-067 VVVVVVVVVVVVVVVVVVVVVV\n\nAN ORDINANCE FURTHER AMENDING CERTAIN SECTIONS OF ARTICLE XXV OF ORDINANCE NO. 93-049, OTHERWISE KNOWN AS TRAFFIC CO"
+      },
+      {
+        "file_name": "Ordno-2025-070-Institutionalizing-the-Approved-LPTRP.pdf",
+        "score": 0.556084289377938,
+        "text_preview": "<!-- image -->\n\n## Republic of the Philippines\n\n## SANGGUNIANG PANLUNGSOD\n\n## City Government of Naga\n\n## ORDINANCE NO. 2025-070 VVVVVVVVVVVVVVVVVVVVVV\n\nAN ORDINANCE INSTITUTIONALIZING THE APPROVED LOCAL PUBLIC TRANSPORT ROUTE PLAN (LPTRP) OF THE CITY OP NAGA, CAMARINES SUR, PRESCRIBING THE OPERATIN"
+      },
+      {
+        "file_name": "ord2022-022.pdf",
+        "score": 0.5312327159124327,
+        "text_preview": "<!-- image -->\n\n## Republika ng Pilipinas\n\n## TANGGAPAN NG SANGGUNIANG PANLUNGSOD Lungsod ng Naga\n\n<!-- image -->\n\nCity Hall Compound,J.Miranda Avenue,Naga City,4400 X www.naga.gov.ph/sp@naga.gov.ph 205-2980 1ocal2060\n\n<!-- image -->\n\n## W\n\n<!-- image -->\n\nBe it ordained by the Sangguniang Panlungso"
+      },
+      {
+        "file_name": "Ordno-2025-047-Renaming-Liboton-Street-to-J.-Antonio-Carpio-Street-1.pdf",
+        "score": 0.5071780186564896,
+        "text_preview": "<!-- image -->\n\n## Republic of  the Philippines\n\n## SANGGUNIANG PANLUNGSOD City  Government of Naga\n\n## ORDINANCE NO.  2025-047 WWWVWWWWVWWW\n\nAN  ORDINANCE AMENDING SECTION 1.3  OF  ORDINANCE NO.  949  BY  RENAMING LIBOTON STREET IN  BARANGAY LIBOTON TO  J.  ANTONIO M.  CARPIO STREET IN HONOR OP  TH"
+      }
+    ]
+  },
+  {
+    "query": "What is the Balik Eskwela Program about?",
+    "search_type": "hybrid",
+    "response": "The Balik Eskwela Program, established by Ordinance No. 2025-069, is an initiative by the Naga City Government aimed at assisting tertiary education students from indigent or low-income families. Its primary purpose is to provide a loan facility and financial and institutional assistance to enable students who were forced to stop their schooling due to unpaid tuition and other school fees to re-enroll and complete their courses.\n\nThe program also aims to help these students once they are back in the educational system by assisting them in migrating to available scholarship programs or in gaining admission to government schools, colleges, and training centers to enjoy free tertiary education.\n\nThe Balik Eskwela Program has four main components:\n*   Bridge Loan Facility\n*   Enrolment Re-entry Grant\n*   Semestral Financial Assistance\n*   Assistance in Migrating to a Regular Scholarship Program or to a State or Local University or College or to a government technical/vocational training center.\n\nIf a beneficiary fails to qualify for a scholarship or is not admitted to a government school, they will continue to receive financial assistance under Section 4 of Ordinance No. 2022-109, also known as the \"Educational Assistance of Naga City Ordinance,\" subject to its limitations (Document 3, SECTION 2; Document 4, SECTION 23). This program builds upon previous commitments to education, including Ordinance No. 2015-012 (Education Code of Naga City) and Ordinance No. 2012-035 (Naga City Youth Code) (Document 3, Explanatory Note).",
+    "metrics": {
+      "retrieval_time": 1.082408,
+      "generation_time": 6.131812,
+      "total_time": 7.21422,
+      "num_retrieved": 5
+    },
+    "context": [
+      {
+        "file_name": "Ordno-2025-069-Balik-Eskwela-Program.pdf",
+        "score": 0.984757377972359,
+        "text_preview": "the higher the indigent household, the including with disabilities and children of solo score, children parents. | | Number of semesters out of school | 40% | The higher the number of semesters out of school, the higher the score, but not to exceed four (4) semesters, or such maximum number as may l"
+      },
+      {
+        "file_name": "Ordno-2025-069-Balik-Eskwela-Program.pdf",
+        "score": 0.7024290326100218,
+        "text_preview": "the end of the year to the Trust Fund herein created. - SECTION 30. Support from the Private Sector. endeavor to encourage the private sector, civic groups, private individuals, successful scholars of the city government, and business entities with their corporate social responsibility programs, to "
+      },
+      {
+        "file_name": "Ordno-2025-069-Balik-Eskwela-Program.pdf",
+        "score": 0.6745051219109135,
+        "text_preview": "<!-- image --> ## Republic of the Philippines ## SANGGUNIANG PAl^UNGSOD City Goverament of Naga ## ORDIKAMCE HO. 2025-069 VVVVVVVVVWVVVVVVVVVVV AN ORDINANCE ESTABLISHING THE BALIK ESKNELA PROGRAM FOR TERTIARY EDUCATION STUDENTS OF NAGA CITY, PROVIDING A BRIDGE LOAN FACILITY AND ENROLMENT RE-ENTRY GR"
+      },
+      {
+        "file_name": "Ordno-2025-069-Balik-Eskwela-Program.pdf",
+        "score": 0.3951630862548893,
+        "text_preview": "be able to enjoy free tertiary education. Such schools need not necessarily be located in Naga City. If successfully admitted, the beneficiary shall be dropped from this Program without extinguishing his or her obligations to repay the loan. SECTION 23. Failure to Migrate to a Scholarship Program or"
+      },
+      {
+        "file_name": "Ordno-2025-069-Balik-Eskwela-Program.pdf",
+        "score": 0.3,
+        "text_preview": "Table 1 of Section 3.g. | Documentary requirements of at least two (2) indicators listed in Table 1. | | c. Filipino citizen and a bona fide resident of Naga City for at least three (3) years prior to application to this Program. | Barangay Residency Registration. Certificate of Comelec or | | d. Pr"
+      }
+    ]
+  },
+  {
+    "query": "Are there any ordinances about street naming or renaming?",
+    "search_type": "hybrid",
+    "response": "Yes, there are ordinances about street naming and renaming in Naga City.\n\n1.  **Ordinance No. 2025-047** amends Section 1.3 of Ordinance No. 949 by renaming Liboton Street in Barangay Liboton to J. Antonio M. Carpio Street. (Document 1)\n2.  **Ordinance No. 949** is mentioned as the ordinance through which the road formerly known as Jacob Extension was renamed to Liboton Street. (Document 1)\n3.  **Ordinance No. 2022-022** officially names several streets, including Dahlia Street, Sunflower Street, Gumamela Street, and Canda Street. (Document 2)",
+    "metrics": {
+      "retrieval_time": 1.135543,
+      "generation_time": 7.660225,
+      "total_time": 8.795767999999999,
+      "num_retrieved": 5
+    },
+    "context": [
+      {
+        "file_name": "Ordno-2025-047-Renaming-Liboton-Street-to-J.-Antonio-Carpio-Street-1.pdf",
+        "score": 0.8998373602431831,
+        "text_preview": "<!-- image -->\n\n## Republic of  the Philippines\n\n## SANGGUNIANG PANLUNGSOD City  Government of Naga\n\n## ORDINANCE NO.  2025-047 WWWVWWWWVWWW\n\nAN  ORDINANCE AMENDING SECTION 1.3  OF  ORDINANCE NO.  949  BY  RENAMING LIBOTON STREET IN  BARANGAY LIBOTON TO  J.  ANTONIO M.  CARPIO STREET IN HONOR OP  TH"
+      },
+      {
+        "file_name": "ord2022-022.pdf",
+        "score": 0.6050559367083126,
+        "text_preview": "<!-- image -->\n\n## Republika ng Pilipinas\n\n## TANGGAPAN NG SANGGUNIANG PANLUNGSOD Lungsod ng Naga\n\n<!-- image -->\n\nCity Hall Compound,J.Miranda Avenue,Naga City,4400 X www.naga.gov.ph/sp@naga.gov.ph 205-2980 1ocal2060\n\n<!-- image -->\n\n## W\n\n<!-- image -->\n\nBe it ordained by the Sangguniang Panlungso"
+      },
+      {
+        "file_name": "Ordno-2025-056-Unified-Route-for-VISTODA-and-LAVISTODA.pdf",
+        "score": 0.49175584634427383,
+        "text_preview": "1\n\n<!-- image -->\n\n<!-- image -->\n\n<!-- image -->\n\n## Republic of the Philippines\n\n## SANGGUNIANG PANLUNGSOD\n\n## City Government of Naga\n\n## ORDINANCE NO. 2025-056\n\nvvvvvvvvvvvvvvvvvvvvvv\n\nAN ORDINANCE FURTHER AMENDING CERTAIN SECTIONS OF ARTICLE XXV OF ORDINANCE NO. 93-049, OTHERWISE KNOWN AS \"THE "
+      },
+      {
+        "file_name": "ord2023-004.pdf",
+        "score": 0.3,
+        "text_preview": "<!-- image -->\n\n<!-- image -->\n\n<!-- image -->\n\n<!-- image -->\n\n## Republicof thePhilippines\n\n## SANGGUNIANGPANLUNGSOD City Government of Naga\n\n## ORDINANCE NO.2023-004\n\nSponsor: Hon.Ghiel G. Rosales\n\n## Explanatory Note\n\nIn consonance with the celebration of the 25th yearof partnership between the "
+      },
+      {
+        "file_name": "ord2023-006.pdf",
+        "score": 0.19130288654054542,
+        "text_preview": "<!-- image -->\n\n<!-- image -->\n\n<!-- image -->\n\n## SANGGUNIANGPANLUNGSOD\n\n## Republicof thePhilippines City Government of Naga\n\n## ORDINANCE NO.2023-006\n\nAN ORDINANCEMANDATING THE REGISTRATION OF OWNERSHIP OF\n\nHON. MELVIN RAMON G.BUENAFE\n\nRepublic Act No.10601,otherwise known as the \"Agricultural an"
+      }
+    ]
+  },
+  {
+    "query": "What regulations exist for public infrastructure projects?",
+    "search_type": "hybrid",
+    "response": "Based on the provided document excerpts, the following regulations exist for public infrastructure projects in Naga City:\n\n**1. Quality Assurance and Defect Rectification (Naga City Bantay Proyekto Ordinance of 2025 - Ordinance No. 2025-061):**\n*   **Policy:** To ensure all government infrastructure projects are of the highest quality, conform to plans and specifications, and to compel rectification of identified defects during construction and after completion while under warranty (Section 2).\n*   **Inspections:** The Project Monitoring Committee (PMC) must regularly inspect and evaluate projects at least twice while ongoing (unannounced) and at least once a year during the Defects Liability Period (DLP) and Warranty Period (Section 4).\n*   **Reporting:** The PMC prepares an Inspection and Evaluation Report within three (3) working days after an inspection, documenting findings with evidence and recommendations (Section 5c).\n*   **Action on On-Going Projects:** If substandard materials or methods are found, affected portions must be reworked or replaced. Failure to do so can lead to suspension of payment, with the City Mayor's approval after a meeting (Section 6).\n*   **Action on Completed Projects (within DLP):** If defects are found, the CEO notifies the contractor within five (5) working days to rectify them at their expense within fifteen (15) working days. Failure to undertake repairs or perform them satisfactorily will lead to forfeiture of Performance/Warranty Security, attachment/garnishment proceedings, and blacklisting (Section 7).\n*   **Action on Completed Projects (within Warranty Period for structural defects):** The CEO notifies the contractor within five (5) working days. Responsibility for structural defects is determined through a joint inspection, and the City Legal Officer may recommend forfeiture of the Warranty Security if the contractor fails to explain satisfactorily or rectify the project. The city government may undertake repairs, with costs reimbursable by the responsible party (Section 8).\n*   **Warranty Security:** Contractors must renew their Warranty Security annually until the end of the project's warranty period. Failure to renew bars the contractor from participating in city government procurement (Section 9).\n*   **Public Participation:** The public is encouraged to report observed defects via an online platform, and the PMC must promptly act on actionable reports (Section 10).\n*   **Project Transparency Board:** Contractors must post a billboard at the project site displaying project information (name, location, contractor, dates, cost, fund source, implementing office). Failure to display a compliant billboard results in an administrative fine of P1,000.00 per day (Section 12).\n\n**2. Disposal of Excess Soil and Concrete Debris (Ordinance No. 2025-060):**\n*   **Policy:** Excess soil and concrete debris from public infrastructure projects must be delivered to designated city or barangay properties for public benefit and may not be appropriated for private use (Section 1).\n*   **Contractor Obligations:** Contractors must deliver excess soil and/or concrete debris to the nearest designated default site (old dump site in Bgy. Balatas, sanitary landfill in Bgy. San Isidro, or city property along Almeda Highway) and inform the CEO and PMC at least one day in advance of delivery (Section 4, Section 2c).\n*   **CEO Obligations:** The City Engineer's Office (CEO) estimates the probable volume of excess materials, reconciles estimates with DPWH, manages stockpiles at disposal sites, includes hauling costs in locally funded projects, and issues notices to comply for non-delivery (Section 5).\n*   **PMC Obligations:** The PMC monitors the progress of work and the delivery of excess materials, issuing a PMC Certification upon project completion detailing estimated and actual volumes delivered, with an allowable 10% variance (Section 6a, 6b, 6e, 6f).\n*   **Project Acceptance and Payment:** Acceptance of the project is contingent on the delivery of excess materials as evidenced by a PMC Certification and/or settlement of any penalty. Non-compliance bars project acceptance and processing of payment (Section 10).\n*   **Penalties:** Fines are imposed for undelivered excess soil (P1,500 for the first 3 cubic meters, P1,000 for each succeeding) and concrete debris (P1,000 for initial non-delivery and each succeeding cubic meter). Delivery or sale of excess materials to private entities is penalized with a P5,000.00 fine and potential charges for theft. Contractors found guilty are barred from city government procurement until fines are settled (Section 11).\n*   **Inclusion in Contract:** The provisions of this ordinance are deemed written into the contract of city government-funded infrastructure projects (Section 12).",
+    "metrics": {
+      "retrieval_time": 1.438597,
+      "generation_time": 28.532741,
+      "total_time": 29.971338000000003,
+      "num_retrieved": 5
+    },
+    "context": [
+      {
+        "file_name": "Ordno-2025-061-Bantay-Proyekto-Ordinance.pdf",
+        "score": 1.0,
+        "text_preview": "<!-- image --> <!-- image --> <!-- image --> ## Republic of the Philippines ## SANGGUNIANG PANLUNGSOD City Governmentof Naga ## ORDINANCE NO. 2025-061 VVVVVVVVVVVVVVVVVVVVVV AN ORDINANCE INSTITUTIONALIZING QUALITY ASSURANCE OF GOVERNMENT INFRASTRUCTURE PROJECTS IN NAGA CITY, MANDATING RECTIFICATION "
+      },
+      {
+        "file_name": "Ordno-2025-060-Disposal-of-Excess-Soil-and-Concrete-Debris-from-Public-Infrastructure-Projects.pdf",
+        "score": 0.7363444049769583,
+        "text_preview": "or concrete debris, issue to the contractor a CEO Certification to that effect within one month from award of the project or within five (5) working days from receipt of a similar declaration from DPWH as per Section 3a hereof, copy furnished the PMC. Such CEO Certification shall be presented by the"
+      },
+      {
+        "file_name": "Ordno-2025-060-Disposal-of-Excess-Soil-and-Concrete-Debris-from-Public-Infrastructure-Projects.pdf",
+        "score": 0.592208546122005,
+        "text_preview": "<!-- image --> <!-- image --> ## Rqjublic of the Philippines ## SANGGUNIANG PANLUNGSOD City Government of Naga ## ORDINANCE NO. 2025-060 WWVWVWWWVW AN ORDINANCE MANDATING THE DELIVERY OF EXCESS SOIL AND CONCRETE DEBRIS FROM PUBLIC INFRASTRUCTURE PROJECTS IN THE CITY OF NAGA TO DESIGNATED SITES AND I"
+      },
+      {
+        "file_name": "Ordno-2025-061-Bantay-Proyekto-Ordinance.pdf",
+        "score": 0.5090183142463658,
+        "text_preview": "during substandard materials, design inspection the PMC discovers the use of substandard concrete mixtures, non-compliance with specifications as per plans and program of work, construction methods, it shall mark and measure the length, and/or volume of the affected SECTIONS, or improper height to i"
+      },
+      {
+        "file_name": "Ordno-2025-070-Institutionalizing-the-Approved-LPTRP.pdf",
+        "score": 0.2235690361626708,
+        "text_preview": "<!-- image -->\n\n## Republic of the Philippines\n\n## SANGGUNIANG PANLUNGSOD\n\n## City Government of Naga\n\n## ORDINANCE NO. 2025-070 VVVVVVVVVVVVVVVVVVVVVV\n\nAN ORDINANCE INSTITUTIONALIZING THE APPROVED LOCAL PUBLIC TRANSPORT ROUTE PLAN (LPTRP) OF THE CITY OP NAGA, CAMARINES SUR, PRESCRIBING THE OPERATIN"
+      }
+    ]
+  }
+]

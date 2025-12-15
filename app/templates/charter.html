@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charter - ADAL AI</title>
+    
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/adal_iconb.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/company.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <img src="{{ url_for('static', filename='img/adal_iconb.png') }}" alt="ADAL">
+                <span>ADAL</span>
+            </a>
+            <div class="nav-links">
+                <a href="/about">About</a>
+                <a href="/charter" class="active">Charter</a>
+                <a href="/pricing">Pricing</a>
+                <a href="/login" class="btn-login">Log in</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section charter-hero">
+        <div class="container">
+            <h1>ADAL Charter</h1>
+            <p class="hero-subtitle">Our guiding principles for democratizing academic research at CSPC</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="content-wrapper">
+        <div class="container charter-container">
+            <!-- Mission Statement -->
+            <section class="charter-section mission-section">
+                <div class="section-header">
+                    <i class="fas fa-flag"></i>
+                    <h2>Mission Statement</h2>
+                </div>
+                <p class="mission-text">ADAL AI's mission is to ensure that every CSPC student, faculty member, and researcher can:</p>
+                <ul class="mission-list">
+                    <li><i class="fas fa-check-circle"></i> <strong>Discover relevant research effortlessly</strong> through conversational search</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>Access complete thesis abstracts and metadata</strong> in seconds</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>Receive proper citations automatically</strong> to support academic integrity</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>Explore the breadth of CSPC research</strong> without technical barriers</li>
+                </ul>
+            </section>
+
+            <!-- Principle 1 -->
+            <section class="charter-section">
+                <div class="principle-number">01</div>
+                <h2>Broadly Distributed Academic Benefits</h2>
+                <p>We commit to using ADAL's capabilities <strong>exclusively for the benefit of the CSPC academic community</strong>, ensuring equitable access to research for all students and faculty, regardless of technical skill or department.</p>
+                <div class="principle-details">
+                    <h4>Our primary duty is to CSPC. We prioritize:</h4>
+                    <ul>
+                        <li><strong>Student success:</strong> Helping students find relevant past research to inform their own work</li>
+                        <li><strong>Faculty efficiency:</strong> Reducing time spent manually searching for related studies</li>
+                        <li><strong>Research continuity:</strong> Preserving institutional knowledge across graduating cohorts</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Principle 2 -->
+            <section class="charter-section">
+                <div class="principle-number">02</div>
+                <h2>Accuracy and Source Transparency</h2>
+                <p>We are committed to providing <strong>factually accurate answers</strong> grounded strictly in CSPC's thesis collection.</p>
+                <div class="commitment-grid">
+                    <div class="commitment-card">
+                        <i class="fas fa-ban"></i>
+                        <h4>No hallucinations</h4>
+                        <p>ADAL will clearly state <em>"I didn't find that information in my knowledge base"</em> when data is unavailable</p>
+                    </div>
+                    <div class="commitment-card">
+                        <i class="fas fa-file-alt"></i>
+                        <h4>Source attribution</h4>
+                        <p>Every answer includes document sources and page numbers</p>
+                    </div>
+                    <div class="commitment-card">
+                        <i class="fas fa-quote-right"></i>
+                        <h4>APA compliance</h4>
+                        <p>Automatic citation formatting follows institutional standards</p>
+                    </div>
+                </div>
+                <p class="commitment-statement"><strong>We will never generate fictional research or fabricate thesis content.</strong></p>
+            </section>
+
+            <!-- Principle 3 -->
+            <section class="charter-section">
+                <div class="principle-number">03</div>
+                <h2>Privacy and Data Security</h2>
+                <p>We protect user queries and chat history with institutional-grade security:</p>
+                <ul class="security-list">
+                    <li><i class="fas fa-shield-alt"></i> <strong>CSPC-only access:</strong> Email domain restrictions (@cspc.edu.ph, @my.cspc.edu.ph)</li>
+                    <li><i class="fas fa-lock"></i> <strong>Encrypted storage:</strong> Supabase authentication and chat logs comply with academic data privacy standards</li>
+                    <li><i class="fas fa-user-secret"></i> <strong>No external data sharing:</strong> User queries and research interests remain confidential within CSPC infrastructure</li>
+                </ul>
+            </section>
+
+            <!-- Principle 4 -->
+            <section class="charter-section">
+                <div class="principle-number">04</div>
+                <h2>Continuous Improvement</h2>
+                <p>We actively solicit feedback from the CSPC community to expand coverage and improve accuracy:</p>
+                <div class="improvement-grid">
+                    <div class="improvement-item">
+                        <i class="fas fa-map"></i>
+                        <h4>Roadmap transparency</h4>
+                        <p>Known limitations are clearly communicated</p>
+                    </div>
+                    <div class="improvement-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <h4>Semester updates</h4>
+                        <p>New thesis batches ingested after each academic year</p>
+                    </div>
+                    <div class="improvement-item">
+                        <i class="fas fa-comments"></i>
+                        <h4>Feature requests</h4>
+                        <p>Community-driven enhancements</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Principle 5 -->
+            <section class="charter-section">
+                <div class="principle-number">05</div>
+                <h2>Open Collaboration</h2>
+                <p>We encourage collaboration with CSPC library staff, IT services, and academic departments:</p>
+                <ul class="collaboration-list">
+                    <li><i class="fas fa-book"></i> <strong>Content curation:</strong> Librarians control which theses are indexed</li>
+                    <li><i class="fas fa-check-double"></i> <strong>Quality assurance:</strong> Faculty advisors can review retrieval accuracy</li>
+                    <li><i class="fas fa-code-branch"></i> <strong>Technical transparency:</strong> System architecture fully documented</li>
+                </ul>
+            </section>
+
+            <!-- CTA -->
+            <section class="charter-cta">
+                <h3>Ready to explore CSPC research?</h3>
+                <a href="/login" class="btn-primary">Get Started <i class="fas fa-arrow-right"></i></a>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+        <div class="container">
+            <p>&copy; 2025 ADAL AI - Team Virgo, CSPC. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="/about">About</a>
+                <a href="/pricing">Pricing</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

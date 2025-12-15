@@ -1,0 +1,76 @@
+name: adal-naga-ordinances
+services:
+  - name: adal4mynaga-app
+    # Build configuration
+    github:
+      repo: Devcavi19/adal_hack4naga
+      branch: deploy
+    dockerfile_path: Dockerfile
+    
+    # HTTP configuration
+    http_port: 8080
+    
+    # Resource configuration
+    instance_count: 1
+    instance_size_slug: apps-m-2vcpu-2gb
+    
+    # Environment variables and secrets
+    envs:
+      - key: FLASK_ENV
+        value: production
+      - key: PYTHONUNBUFFERED
+        value: "1"
+      - key: DATA_DIR
+        value: /app/index
+      - key: DEBUG
+        value: "False"
+      # Add these secrets in Digital Ocean App Platform dashboard:
+      # SECRET_KEY - Session secret key (generate with: python -c "import secrets; print(secrets.token_hex(32))")
+      # GOOGLE_API_KEY - Google Gemini API key
+      # QDRANT_URL - Qdrant cloud endpoint
+      # QDRANT_API_KEY - Qdrant API key
+      # SUPABASE_URL - Supabase project URL
+      # SUPABASE_KEY - Supabase anon key
+      # SUPABASE_SERVICE_KEY - Supabase service role key
+      # APP_URL - Your application URL
+      - key: SECRET_KEY
+        scope: RUN_AND_BUILD_TIME
+        type: SECRET
+      - key: GOOGLE_API_KEY
+        scope: RUN_AND_BUILD_TIME
+        type: SECRET
+      - key: QDRANT_URL
+        scope: RUN_AND_BUILD_TIME
+        type: SECRET
+      - key: QDRANT_API_KEY
+        scope: RUN_AND_BUILD_TIME
+        type: SECRET
+      - key: SUPABASE_URL
+        scope: RUN_AND_BUILD_TIME
+        type: SECRET
+      - key: SUPABASE_KEY
+        scope: RUN_AND_BUILD_TIME
+        type: SECRET
+      - key: SUPABASE_SERVICE_KEY
+        scope: RUN_AND_BUILD_TIME
+        type: SECRET
+      - key: APP_URL
+        scope: RUN_AND_BUILD_TIME
+        type: SECRET
+      - key: GEMINI_MODEL
+        scope: RUN_AND_BUILD_TIME
+        type: SECRET
+      - key: COLLECTION_NAME
+        scope: RUN_AND_BUILD_TIME
+        type: SECRET
+    
+    # Health check configuration
+    health_check:
+      http_path: /health
+      initial_delay_seconds: 10
+      period_seconds: 30
+      timeout_seconds: 10
+      unhealthy_threshold: 3
+
+static_sites: []
+jobs: []

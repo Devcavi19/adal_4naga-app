@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - ADAL AI</title>
+    
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/adal_iconb.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/company.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <img src="{{ url_for('static', filename='img/adal_iconb.png') }}" alt="ADAL">
+                <span>ADAL</span>
+            </a>
+            <div class="nav-links">
+                <a href="/about" class="active">About</a>
+                <a href="/charter">Charter</a>
+                <a href="/pricing">Pricing</a>
+                <a href="/login" class="btn-login">Log in</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1>About</h1>
+            <p class="hero-subtitle">AI-Powered Academic Librarian for CSPC</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="content-wrapper">
+        <div class="container">
+            <!-- Mission -->
+            <section class="content-section">
+                <div class="section-icon">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                <h2>What We Do</h2>
+                <p class="lead">ADAL AI is an <strong>AI-powered academic librarian</strong> built specifically for <strong>CSPC (Camarines Sur Polytechnic College)</strong> to modernize library research and discovery. Created and maintained by <strong>Team Virgo</strong>, ADAL transforms traditional keyword-based catalog searching into <strong>conversational, intelligent research assistance</strong>.</p>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-comments"></i>
+                        <h3>Conversational Search</h3>
+                        <p>Ask questions in natural language and get precise answers from CSPC's thesis and research collection</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-quote-right"></i>
+                        <h3>Smart Citations</h3>
+                        <p>Automatic APA-style citation generation for academic integrity</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-list"></i>
+                        <h3>Exhaustive Retrieval</h3>
+                        <p>Request all research on a topic, not just the top results</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-link"></i>
+                        <h3>Source-Linked Answers</h3>
+                        <p>Every response includes direct links to the original thesis documents</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Coverage -->
+            <section class="content-section coverage-section">
+                <h2>Current Coverage</h2>
+                <p>Our knowledge base currently includes theses and research from:</p>
+                <div class="department-list">
+                    <div class="dept-badge"><i class="fas fa-building"></i> BSM - Business Management</div>
+                    <div class="dept-badge"><i class="fas fa-heartbeat"></i> BSN - Nursing</div>
+                    <div class="dept-badge"><i class="fas fa-flask"></i> CAS - College of Arts and Sciences</div>
+                    <div class="dept-badge"><i class="fas fa-laptop-code"></i> CCS - College of Computer Studies</div>
+                    <div class="dept-badge"><i class="fas fa-hotel"></i> CTHBM - Tourism, Hospitality & Business Management</div>
+                </div>
+                <p class="note"><i class="fas fa-info-circle"></i> <em>Engineering and additional CCS theses will be added in future releases.</em></p>
+            </section>
+
+            <!-- Technology Stack -->
+            <section class="content-section tech-section">
+                <h2>Technology Stack</h2>
+                <div class="tech-grid">
+                    <div class="tech-item">
+                        <i class="fas fa-brain"></i>
+                        <h4>RAG Architecture</h4>
+                        <p>Retrieval-Augmented Generation over FAISS vector index</p>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-bolt"></i>
+                        <h4>Google Gemini 2.0 Flash</h4>
+                        <p>Fast, streaming AI responses</p>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-database"></i>
+                        <h4>Supabase</h4>
+                        <p>Authentication and chat history management</p>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-code"></i>
+                        <h4>Flask</h4>
+                        <p>Robust backend framework for institutional use</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Team -->
+            <section class="content-section team-section">
+                <h2>Built by Team Virgo</h2>
+                <p>ADAL is developed and maintained by Team Virgo at CSPC, dedicated to democratizing academic research discovery for students, faculty, and researchers.</p>
+                <a href="/charter" class="btn-primary">Read Our Charter <i class="fas fa-arrow-right"></i></a>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+        <div class="container">
+            <p>&copy; 2025 ADAL AI - Team Virgo, CSPC. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="/charter">Charter</a>
+                <a href="/pricing">Pricing</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in or sign up - ADAL</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/adal_iconb.png') }}">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Branding -->
+    <a href="/about" class="auth-branding">
+        <img src="{{ url_for('static', filename='img/adal_iconb.png') }}" alt="ADAL">
+        <h2>ADAL</h2>
+    </a>
+
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1>Log in or sign up</h1>
+                <p>Find your research topic conversationally and access your chat history.</p>
+            </div>
+
+            <div class="auth-form">
+                <form id="signin-form">
+                    <!-- Social login buttons (shown by default) -->
+                    <div class="social-buttons">
+                        <button type="button" class="btn-social" id="google-signin-btn">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.874 2.684-6.615z" fill="#4285F4"/>
+                                <path d="M9.003 18c2.43 0 4.467-.806 5.956-2.18L12.05 13.56c-.806.54-1.836.86-3.047.86-2.344 0-4.328-1.584-5.036-3.711H.96v2.332C2.44 15.983 5.485 18 9.003 18z" fill="#34A853"/>
+                                <path d="M3.964 10.712c-.18-.54-.282-1.117-.282-1.71 0-.593.102-1.17.282-1.71V4.96H.957C.347 6.175 0 7.55 0 9.002c0 1.452.348 2.827.957 4.042l3.007-2.332z" fill="#FBBC05"/>
+                                <path d="M9.003 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.464.891 11.426 0 9.003 0 5.485 0 2.44 2.017.96 4.958L3.967 7.29c.708-2.127 2.692-3.71 5.036-3.71z" fill="#EA4335"/>
+                            </svg>
+                            <span>Continue with Google</span>
+                        </button>
+
+                        <button type="button" class="btn-social" id="email-continue-btn">
+                            <i class="fas fa-envelope"></i>
+                            <span>Continue with email</span>
+                        </button>
+                    </div>
+
+                    <!-- Email/Password inputs (hidden by default) -->
+                    <div class="email-inputs hidden">
+                        <button type="button" class="back-button" id="back-btn">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>Back</span>
+                        </button>
+
+                        <div class="form-group">
+                            <label for="email">CSPC Email</label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                placeholder="you@cspc.edu.ph" 
+                                autocomplete="email"
+                            >
+                            <small class="form-hint">Use your CSPC institutional email</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <div class="password-input-wrapper">
+                                <input 
+                                    type="password" 
+                                    id="password" 
+                                    name="password" 
+                                    placeholder="Enter your password" 
+                                    autocomplete="current-password"
+                                >
+                                <button type="button" class="toggle-password" id="toggle-password">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div id="error-message" class="error-message" style="display: none;"></div>
+
+                        <button type="submit" class="btn-primary" id="signin-btn">
+                            <span class="btn-text">Continue</span>
+                            <span class="btn-loader" style="display: none;">
+                                <i class="fas fa-spinner fa-spin"></i>
+                            </span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="auth-footer">
+                <p>Don't have an account? <a href="/signup">Sign up</a></p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="page-footer">
+        <a href="#">Terms of Use</a> | <a href="#">Privacy Policy</a>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+</body>
+</html>

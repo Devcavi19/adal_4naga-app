@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat With AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-robot"></i>
+                    <span>Chat With AI</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item">
+                    <i class="fas fa-folder"></i>
+                    <span>Folders</span>
+                    <i class="fas fa-chevron-down arrow"></i>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Documents</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-share-alt"></i>
+                    <span>Shared With Me</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-history"></i>
+                    <span>History</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="#" class="nav-item">
+                    <i class="fas fa-comment"></i>
+                    <span>Feedback</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Invite People</span>
+                </a>
+                
+                <div class="user-profile">
+                    <img src="https://ui-avatars.com/api/?name=Maya+Sinclair&background=10b981&color=fff" alt="User Avatar">
+                    <div class="user-info">
+                        <div class="user-name">Adal Ai</div>
+                        <div class="user-email">hey@agency.com</div>
+                    </div>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-header">
+                <h1>Chat With AI</h1>
+                <div class="header-actions">
+                    <button class="btn-upgrade">
+                        <i class="fas fa-bolt"></i>
+                        Upgrade
+                    </button>
+                    <button class="btn-icon">
+                        <i class="fas fa-question-circle"></i>
+                    </button>
+                    <button class="btn-icon">
+                        <i class="fas fa-gift"></i>
+                    </button>
+                    <button class="btn-icon">
+                        <i class="fas fa-sliders-h"></i>
+                    </button>
+                </div>
+            </header>
+
+            <div class="chat-area" id="chat-area">
+                <!-- Welcome Screen -->
+                <div class="welcome-screen" id="welcome-screen">
+                    <div class="welcome-avatar">
+                        <div class="avatar-gradient"></div>
+                    </div>
+                    <h2>Welcome, Adal</h2>
+                    <p class="welcome-subtitle">Start by scripting a task, and let the chat take over.<br>Not sure where to start?</p>
+                    
+                    <div class="action-cards">
+                        <div class="action-card">
+                            <div class="card-icon">
+                                <i class="fas fa-pen"></i>
+                            </div>
+                            <h3>Write Copy</h3>
+                            <p>Craft compelling text for ads and emails.</p>
+                        </div>
+                        <div class="action-card">
+                            <div class="card-icon">
+                                <i class="fas fa-image"></i>
+                            </div>
+                            <h3>Image Generation</h3>
+                            <p>Design custom visuals with AI.</p>
+                        </div>
+                        <div class="action-card">
+                            <div class="card-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h3>Research</h3>
+                            <p>Quickly gather and summarize info.</p>
+                        </div>
+                        <div class="action-card">
+                            <div class="card-icon">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <h3>Generate Article</h3>
+                            <p>Write articles on any topic instantly.</p>
+                        </div>
+                        <div class="action-card">
+                            <div class="card-icon">
+                                <i class="fas fa-chart-pie"></i>
+                            </div>
+                            <h3>Data Analytics</h3>
+                            <p>Analyze data with AI-driven insights.</p>
+                        </div>
+                        <div class="action-card">
+                            <div class="card-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <h3>Generate Code</h3>
+                            <p>Produce accurate code fast.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat Messages Area -->
+                <div class="messages-container" id="messages-container">
+                    <!-- Messages will be appended here -->
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="input-container">
+                <div class="input-wrapper">
+                    <button class="input-icon-btn" title="Attach file">
+                        <i class="fas fa-paperclip"></i>
+                    </button>
+                    <button class="input-icon-btn" title="Add emoji">
+                        <i class="fas fa-smile"></i>
+                    </button>
+                    <input 
+                        type="text" 
+                        id="message-input" 
+                        placeholder="Write your message ..." 
+                        autocomplete="off"
+                    />
+                    <button class="input-icon-btn" title="Voice input">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                    <div class="input-actions">
+                        <button class="input-icon-btn" title="Attach image">
+                            <i class="fas fa-image"></i>
+                        </button>
+                        <button class="input-icon-btn" title="Add more">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                        <button class="btn-send" id="send-button" title="Send message">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+</body>
+</html>

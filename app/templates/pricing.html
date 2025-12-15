@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - ADAL AI</title>
+    
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/adal_iconb.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/company.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <img src="{{ url_for('static', filename='img/adal_iconb.png') }}" alt="ADAL">
+                <span>ADAL</span>
+            </a>
+            <div class="nav-links">
+                <a href="/about">About</a>
+                <a href="/charter">Charter</a>
+                <a href="/pricing" class="active">Pricing</a>
+                <a href="/login" class="btn-login">Log in</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section pricing-hero">
+        <div class="container">
+            <h1>Simple, Transparent Pricing</h1>
+            <p class="hero-subtitle">Choose the plan that fits your institution's needs</p>
+            <p class="pricing-note"><i class="fas fa-info-circle"></i> All prices in PHP, VAT exclusive. Reviewed quarterly based on 1 USD = PHP 58.00</p>
+        </div>
+    </section>
+
+    <!-- Pricing Plans -->
+    <main class="content-wrapper">
+        <div class="container">
+            <!-- Pricing Cards -->
+            <div class="pricing-grid">
+                <!-- Pilot -->
+                <div class="pricing-card pilot-card">
+                    <div class="card-badge">8 Weeks Trial</div>
+                    <div class="card-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3>Pilot Program</h3>
+                    <div class="price">
+                        <span class="currency">₱</span>
+                        <span class="amount">145,000</span>
+                        <span class="period">/ per site</span>
+                    </div>
+                    <p class="plan-description">Ideal for testing ADAL with one department or college</p>
+                    
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> Single library index (up to 5,000 records)</li>
+                        <li><i class="fas fa-check"></i> 10,000 conversational queries included</li>
+                        <li><i class="fas fa-check"></i> Monthly content refresh</li>
+                        <li><i class="fas fa-check"></i> Email support</li>
+                        <li><i class="fas fa-check"></i> Best-effort uptime</li>
+                    </ul>
+                    
+                    <p class="overage-note">Overage: ₱1.20 per query beyond 10,000</p>
+                    
+                    <button class="btn-plan">Contact Sales</button>
+                </div>
+
+                <!-- School Essentials -->
+                <div class="pricing-card essentials-card">
+                    <div class="card-icon">
+                        <i class="fas fa-school"></i>
+                    </div>
+                    <h3>School Essentials</h3>
+                    <div class="price">
+                        <span class="currency">₱</span>
+                        <span class="amount">348,000</span>
+                        <span class="period">/ year</span>
+                    </div>
+                    <p class="plan-description">Perfect for single campus or department deployment</p>
+                    
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> One library index</li>
+                        <li><i class="fas fa-check"></i> 25,000 queries/year included</li>
+                        <li><i class="fas fa-check"></i> Basic admin dashboard, usage logs</li>
+                        <li><i class="fas fa-check"></i> APA-style citations, streaming responses</li>
+                        <li><i class="fas fa-check"></i> Monthly content refreshes</li>
+                        <li><i class="fas fa-check"></i> Email support</li>
+                        <li><i class="fas fa-check"></i> 99.5% target uptime</li>
+                    </ul>
+                    
+                    <p class="overage-note">Overage: ₱1.20 per query</p>
+                    
+                    <button class="btn-plan">Get Started</button>
+                </div>
+
+                <!-- Campus Starter -->
+                <div class="pricing-card starter-card popular">
+                    <div class="card-badge">Most Popular</div>
+                    <div class="card-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <h3>Campus Starter</h3>
+                    <div class="price">
+                        <span class="currency">₱</span>
+                        <span class="amount">1,044,000</span>
+                        <span class="period">/ year</span>
+                    </div>
+                    <p class="plan-description">Ideal for multi-department campus or college-wide deployment</p>
+                    
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> Two indexes (combined search)</li>
+                        <li><i class="fas fa-check"></i> 100,000 queries/year included</li>
+                        <li><i class="fas fa-check"></i> Role-based admin (staff/student)</li>
+                        <li><i class="fas fa-check"></i> Basic moderation guardrails</li>
+                        <li><i class="fas fa-check"></i> Twice-monthly content refreshes</li>
+                        <li><i class="fas fa-check"></i> CSV export of usage stats</li>
+                        <li><i class="fas fa-check"></i> Email + business-hours chat support</li>
+                        <li><i class="fas fa-check"></i> 99.9% target uptime</li>
+                    </ul>
+                    
+                    <p class="overage-note">Overage: ₱1.20 per query</p>
+                    
+                    <button class="btn-plan btn-primary">Get Started</button>
+                </div>
+
+                <!-- Consortium -->
+                <div class="pricing-card consortium-card">
+                    <div class="card-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>District/Consortium</h3>
+                    <div class="price">
+                        <span class="currency">₱</span>
+                        <span class="amount">3,480,000</span>
+                        <span class="period">/ year</span>
+                    </div>
+                    <p class="plan-description">For multi-campus university or school district (up to 5 schools)</p>
+                    
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> Centralized admin</li>
+                        <li><i class="fas fa-check"></i> Shared knowledge base</li>
+                        <li><i class="fas fa-check"></i> Pooled 250,000 queries/year</li>
+                        <li><i class="fas fa-check"></i> Unified reporting and compliance</li>
+                        <li><i class="fas fa-check"></i> Shared best practices</li>
+                        <li><i class="fas fa-check"></i> All Campus Starter features</li>
+                    </ul>
+                    
+                    <p class="overage-note">+ ₱580,000 per additional school<br>Overage: ₱1.20 per query</p>
+                    
+                    <button class="btn-plan">Contact Sales</button>
+                </div>
+            </div>
+
+            <!-- Features Comparison -->
+            <section class="features-section">
+                <h2>What's Included (All Plans)</h2>
+                <div class="included-features">
+                    <div class="feature-item">
+                        <i class="fas fa-brain"></i>
+                        <h4>Conversational RAG</h4>
+                        <p>Over local FAISS index with titles, abstracts, and URLs</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-link"></i>
+                        <h4>Source-linked answers</h4>
+                        <p>With APA citations and streaming UI</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <h4>Simple authentication</h4>
+                        <p>Email/password or magic link via Supabase</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-chart-line"></i>
+                        <h4>Basic usage logging</h4>
+                        <p>And admin controls</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-file-alt"></i>
+                        <h4>Supported inputs</h4>
+                        <p>CSV, TXT, Google Drive links (PDFs if text-extracted)</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Add-ons -->
+            <section class="addons-section">
+                <h2>Optional Add-Ons</h2>
+                <div class="addon-table">
+                    <div class="addon-row">
+                        <div class="addon-name">
+                            <i class="fas fa-database"></i>
+                            <span>Data cleanup and ingestion mapping</span>
+                        </div>
+                        <div class="addon-price">₱174,000 <span class="addon-type">(one-time)</span></div>
+                    </div>
+                    <div class="addon-row">
+                        <div class="addon-name">
+                            <i class="fab fa-google"></i>
+                            <span>Google Workspace sign-in integration</span>
+                        </div>
+                        <div class="addon-price">₱116,000 <span class="addon-type">(one-time)</span></div>
+                    </div>
+                    <div class="addon-row">
+                        <div class="addon-name">
+                            <i class="fas fa-palette"></i>
+                            <span>Custom theming/branding</span>
+                        </div>
+                        <div class="addon-price">₱58,000 <span class="addon-type">(one-time)</span></div>
+                    </div>
+                    <div class="addon-row">
+                        <div class="addon-name">
+                            <i class="fas fa-user-tie"></i>
+                            <span>Dedicated success manager</span>
+                        </div>
+                        <div class="addon-price">₱348,000 <span class="addon-type">/year</span></div>
+                    </div>
+                    <div class="addon-row">
+                        <div class="addon-name">
+                            <i class="fas fa-server"></i>
+                            <span>Private single-tenant cloud</span>
+                        </div>
+                        <div class="addon-price">₱696,000 <span class="addon-type">/year</span></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Examples -->
+            <section class="examples-section">
+                <h2>Example Quotes</h2>
+                <div class="example-grid">
+                    <div class="example-card">
+                        <h4>K–12 School (1 site)</h4>
+                        <p class="example-plan">School Essentials</p>
+                        <p class="example-price">₱348,000/year</p>
+                    </div>
+                    <div class="example-card">
+                        <h4>Small College (2,500 students)</h4>
+                        <p class="example-plan">Campus Starter</p>
+                        <p class="example-price">₱1,044,000/year</p>
+                    </div>
+                    <div class="example-card">
+                        <h4>District with 8 Schools</h4>
+                        <p class="example-plan">Consortium Bundle</p>
+                        <p class="example-price">₱5,220,000/year</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Roadmap -->
+            <section class="roadmap-section">
+                <h2><i class="fas fa-rocket"></i> What's Coming Next</h2>
+                <p>As we build out enterprise features, future tiers will include:</p>
+                <div class="roadmap-grid">
+                    <div class="roadmap-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>LMS integrations (Canvas, Moodle, Google Classroom)</span>
+                    </div>
+                    <div class="roadmap-item">
+                        <i class="fas fa-key"></i>
+                        <span>SSO/SCIM (Microsoft Entra ID, Google Workspace)</span>
+                    </div>
+                    <div class="roadmap-item">
+                        <i class="fas fa-plug"></i>
+                        <span>Multi-database connectors (ProQuest, EBSCO, JSTOR)</span>
+                    </div>
+                    <div class="roadmap-item">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Advanced analytics and learning outcomes</span>
+                    </div>
+                    <div class="roadmap-item">
+                        <i class="fas fa-lock"></i>
+                        <span>Data residency controls and SOC 2 Type II compliance</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA -->
+            <section class="pricing-cta">
+                <h3>Ready to modernize your library?</h3>
+                <p>Contact Team Virgo via your CSPC IT Services or Library Administration to schedule a demo</p>
+                <a href="/login" class="btn-primary">Get Started <i class="fas fa-arrow-right"></i></a>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+        <div class="container">
+            <p>&copy; 2025 ADAL AI - Team Virgo, CSPC. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="/about">About</a>
+                <a href="/charter">Charter</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
