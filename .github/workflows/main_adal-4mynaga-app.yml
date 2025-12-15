@@ -102,6 +102,23 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+      - name: Configure App Service Environment Variables
+        run: |
+          az webapp config appsettings set \
+            --resource-group ${{ env.RESOURCE_GROUP }} \
+            --name ${{ env.APP_SERVICE_NAME }} \
+            --settings \
+            GOOGLE_API_KEY="${{ secrets.GOOGLE_API_KEY }}" \
+            QDRANT_URL="${{ secrets.QDRANT_URL }}" \
+            QDRANT_API_KEY="${{ secrets.QDRANT_API_KEY }}" \
+            SUPABASE_URL="${{ secrets.SUPABASE_URL }}" \
+            SUPABASE_KEY="${{ secrets.SUPABASE_KEY }}" \
+            SUPABASE_SERVICE_KEY="${{ secrets.SUPABASE_SERVICE_KEY }}" \
+            SECRET_KEY="${{ secrets.SECRET_KEY }}" \
+            COLLECTION_NAME="naga_ordinances" \
+            DATA_DIR="/app/index" \
+            WEBSITES_PORT="8080"
+
       - name: Deploy to Azure App Service
         uses: azure/webapps-deploy@v2
         with:

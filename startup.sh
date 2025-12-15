@@ -6,34 +6,54 @@ set -e
 
 echo "🚀 Starting Adal Naga Ordinances Chatbot..."
 
-# Verify required environment variables
-required_vars=(
+# Verify CRITICAL required environment variables (application won't work without these)
+critical_vars=(
+    "SECRET_KEY"
     "GOOGLE_API_KEY"
     "QDRANT_URL"
     "QDRANT_API_KEY"
-    "SUPABASE_URL"
-    "SUPABASE_KEY"
-    "SECRET_KEY"
 )
 
-missing_vars=()
-for var in "${required_vars[@]}"; do
+missing_critical_vars=()
+for var in "${critical_vars[@]}"; do
     if [ -z "${!var}" ]; then
-        missing_vars+=("$var")
+        missing_critical_vars+=("$var")
     fi
 done
 
-if [ ${#missing_vars[@]} -gt 0 ]; then
-    echo "⚠️  WARNING: Missing required environment variables:"
-    printf '%s\n' "${missing_vars[@]}"
+if [ ${#missing_critical_vars[@]} -gt 0 ]; then
+    echo "❌ CRITICAL ERROR: Missing required environment variables:"
+    printf '%s\n' "${missing_critical_vars[@]}"
     echo ""
-    echo "The application will start but may have reduced functionality."
-    echo "Please ensure these variables are set in your Azure App Service configuration:"
+    echo "These variables MUST be set in Azure App Service Configuration → Application Settings:"
     echo ""
-    printf '%s\n' "${missing_vars[@]}"
+    printf '%s\n' "${missing_critical_vars[@]}"
+    echo ""
+    echo "The application cannot start without these settings."
+    echo "Please configure them in Azure portal and restart the app service."
+    exit 1
+fi
+
+# Verify OPTIONAL (nice-to-have) environment variables
+optional_vars=(
+    "SUPABASE_URL"
+    "SUPABASE_KEY"
+)
+
+missing_optional_vars=()
+for var in "${optional_vars[@]}"; do
+    if [ -z "${!var}" ]; then
+        missing_optional_vars+=("$var")
+    fi
+done
+
+if [ ${#missing_optional_vars[@]} -gt 0 ]; then
+    echo "⚠️  WARNING: Missing optional environment variables:"
+    printf '%s\n' "${missing_optional_vars[@]}"
+    echo "   Some features may be limited, but the application will still run."
     echo ""
 else
-    echo "✅ All required environment variables are set"
+    echo "✅ All critical environment variables are set"
 fi
 
 # Set Flask environment to production if not already set
