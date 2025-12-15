@@ -124,7 +124,7 @@ jobs:
       - name: Check application health
         run: |
           health_url="${{ secrets.AZURE_APP_URL }}/health"
-          max_attempts=10
+          max_attempts=18
           attempt=1
           
           while [ $attempt -le $max_attempts ]; do
@@ -151,13 +151,13 @@ jobs:
           webhook-url: ${{ secrets.SLACK_WEBHOOK }}
           payload: |
             {
-              "text": "Deployment to Azure App Service completed",
+              "text": "Deployment to Azure App Service: ${{ job.status }}",
               "blocks": [
                 {
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "*Deployment Status*\nRepository: ${{ github.repository }}\nBranch: ${{ github.ref }}\nCommit: ${{ github.sha }}\nStatus: ${{ job.status }}"
+                    "text": "*Deployment Status: ${{ job.status }}*\nRepository: ${{ github.repository }}\nBranch: ${{ github.ref }}\nCommit: ${{ github.sha }}"
                   }
                 }
               ]
