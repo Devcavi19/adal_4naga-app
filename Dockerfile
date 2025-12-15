@@ -12,9 +12,18 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Copy requirements and install Python dependencies with aggressive cache cleanup
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt && \
+    pip cache purge && \
     find /usr/local -type f -name '*.pyc' -delete && \
     find /usr/local -type d -name '__pycache__' -delete && \
     find /usr/local -type d -name 'tests' -exec rm -rf {} + 2>/dev/null || true
+
+# Pre-download sentence-transformers embedding model to avoid runtime download
+# This prevents "no space left on device" errors and ensures the model is cached
+ENV SENTENCE_TRANSFORMERS_HOME=/app/models
+RUN mkdir -p /app/models && \
+    python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2')" && \
+    find /app/models -type f -name '*.pyc' -delete && \
+    find /app/models -type d -name '__pycache__' -delete
 
 # Final production stage
 FROM python:3.12-slim
@@ -31,6 +40,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY --from=builder /usr/local/lib/python3.12/site-packages /usr/local/lib/python3.12/site-packages
 COPY --from=builder /usr/local/bin /usr/local/bin
 
+# Copy pre-cached embedding models from builder
+COPY --from=builder /app/models /app/models
+
 # Copy application files
 COPY config.py .
 COPY wsgi.py .
@@ -44,6 +56,7 @@ RUN chmod +x /app/startup.sh
 # Set environment variables
 ENV FLASK_ENV=production \
     DATA_DIR=/app/index \
+    SENTENCE_TRANSFORMERS_HOME=/app/models \
     PYTHONUNBUFFERED=1 \
     PORT=8080
 
