@@ -154,6 +154,26 @@ jobs:
           app-name: ${{ env.APP_SERVICE_NAME }}
           images: ${{ env.REGISTRY_LOGIN_SERVER }}/${{ env.IMAGE_REPO }}:latest
 
+      - name: Enable Container Logging
+        run: |
+          az webapp log config \
+            --name ${{ env.APP_SERVICE_NAME }} \
+            --resource-group ${{ env.RESOURCE_GROUP }} \
+            --docker-container-logging filesystem \
+            --level verbose
+
+      - name: Wait for Container Startup and Capture Logs
+        run: |
+          echo "⏳ Waiting for container to start and capture any startup errors..."
+          sleep 30
+          
+          echo "📋 Fetching recent container logs..."
+          az webapp log tail \
+            --name ${{ env.APP_SERVICE_NAME }} \
+            --resource-group ${{ env.RESOURCE_GROUP }} \
+            --lines 100 \
+            --timeout 30 || echo "⚠️  Could not fetch logs (container may not be running yet)"
+
       - name: Azure logout
         run: |
           az logout
@@ -164,6 +184,11 @@ jobs:
     if: success()
 
     steps:
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
       - name: Wait for deployment
         run: sleep 60
 
@@ -203,6 +228,14 @@ jobs:
           echo "❌ Application failed health check after $max_attempts attempts"
           echo "📋 Final diagnostic check..."
           curl -s "${{ secrets.AZURE_APP_URL }}/startup-status" || true
+          
+          echo "📋 Capturing container logs for debugging..."
+          az webapp log tail \
+            --name ${{ env.APP_SERVICE_NAME }} \
+            --resource-group ${{ env.RESOURCE_GROUP }} \
+            --lines 200 \
+            --timeout 10 || echo "⚠️  Could not fetch logs"
+          
           exit 1
 
       - name: Notify Slack - Health Check Result
