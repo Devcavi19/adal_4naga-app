@@ -138,6 +138,16 @@ jobs:
             DATA_DIR="/app/index" \
             WEBSITES_PORT="8080"
 
+      - name: Configure App Service Container
+        run: |
+          az webapp config container set \
+            --name ${{ env.APP_SERVICE_NAME }} \
+            --resource-group ${{ env.RESOURCE_GROUP }} \
+            --container-image-name ${{ env.REGISTRY_LOGIN_SERVER }}/${{ env.IMAGE_REPO }}:latest \
+            --container-registry-url https://${{ env.REGISTRY_LOGIN_SERVER }} \
+            --container-registry-user ${{ env.REGISTRY_USERNAME }} \
+            --container-registry-password ${{ env.REGISTRY_PASSWORD }}
+
       - name: Deploy to Azure App Service
         uses: azure/webapps-deploy@v2
         with:
