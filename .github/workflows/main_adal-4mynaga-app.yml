@@ -97,6 +97,25 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Notify Slack - Deployment Started
+        uses: slackapi/slack-github-action@v1.24.0
+        with:
+          payload: |
+            {
+              "text": "🚀 Deployment to Azure App Service started",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "*🚀 Deployment Started*\n*Repository:* ${{ github.repository }}\n*Branch:* ${{ github.ref_name }}\n*Commit:* `${{ github.sha }}`\n*Author:* ${{ github.actor }}"
+                  }
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+
       - name: Azure Login
         uses: azure/login@v1
         with:
@@ -176,20 +195,29 @@ jobs:
           curl -s "${{ secrets.AZURE_APP_URL }}/startup-status" || true
           exit 1
 
-      - name: Notify Slack (Optional)
+      - name: Notify Slack - Health Check Result
         if: always()
         uses: slackapi/slack-github-action@v1.24.0
         with:
           payload: |
             {
-              "text": "Deployment to Azure App Service: ${{ job.status }}",
+              "text": "${{ job.status == 'success' && '✅' || '❌' }} Deployment Health Check: ${{ job.status }}",
               "blocks": [
                 {
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "*Deployment Status: ${{ job.status }}*\nRepository: ${{ github.repository }}\nBranch: ${{ github.ref }}\nCommit: ${{ github.sha }}"
+                    "text": "*${{ job.status == 'success' && '✅ Deployment Successful' || '❌ Deployment Failed' }}*\n*Repository:* ${{ github.repository }}\n*Branch:* ${{ github.ref_name }}\n*Commit:* `${{ github.sha }}`\n*Author:* ${{ github.actor }}\n*Status:* ${{ job.status }}"
                   }
+                },
+                {
+                  "type": "context",
+                  "elements": [
+                    {
+                      "type": "mrkdwn",
+                      "text": "<${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View Workflow Logs>"
+                    }
+                  ]
                 }
               ]
             }
