@@ -1,197 +1,197 @@
-# name: Deploy to Azure Container Registry and App Service
+name: Deploy to Azure Container Registry and App Service
 
-# on:
-#   push:
-#     branches:
-#       - main
-#       - deploy
-#   workflow_dispatch:
+on:
+  push:
+    branches:
+      - main
+      - deploy
+  workflow_dispatch:
 
-# env:
-#   REGISTRY_NAME: ${{ secrets.AZURE_REGISTRY_NAME }}
-#   REGISTRY_USERNAME: ${{ secrets.AZURE_REGISTRY_USERNAME }}
-#   REGISTRY_PASSWORD: ${{ secrets.AZURE_REGISTRY_PASSWORD }}
-#   REGISTRY_LOGIN_SERVER: ${{ secrets.AZURE_REGISTRY_LOGIN_SERVER }}
-#   IMAGE_REPO: adal-naga-ordinances
-#   RESOURCE_GROUP: ${{ secrets.AZURE_RESOURCE_GROUP }}
-#   APP_SERVICE_NAME: ${{ secrets.AZURE_APP_SERVICE_NAME }}
+env:
+  REGISTRY_NAME: ${{ secrets.AZURE_REGISTRY_NAME }}
+  REGISTRY_USERNAME: ${{ secrets.AZURE_REGISTRY_USERNAME }}
+  REGISTRY_PASSWORD: ${{ secrets.AZURE_REGISTRY_PASSWORD }}
+  REGISTRY_LOGIN_SERVER: ${{ secrets.AZURE_REGISTRY_LOGIN_SERVER }}
+  IMAGE_REPO: adal-naga-ordinances
+  RESOURCE_GROUP: ${{ secrets.AZURE_RESOURCE_GROUP }}
+  APP_SERVICE_NAME: ${{ secrets.AZURE_APP_SERVICE_NAME }}
 
-# jobs:
-#   build-and-push:
-#     runs-on: ubuntu-latest
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
     
-#     permissions:
-#       contents: read
-#       packages: write
+    permissions:
+      contents: read
+      packages: write
 
-#     steps:
-#       - name: Free up disk space
-#         run: |
-#           echo "Disk space before cleanup:"
-#           df -h
+    steps:
+      - name: Free up disk space
+        run: |
+          echo "Disk space before cleanup:"
+          df -h
           
-#           # Remove unnecessary files to free up space
-#           sudo rm -rf /usr/local/lib/android
-#           sudo rm -rf /usr/share/dotnet
-#           sudo rm -rf /opt/ghc
-#           sudo rm -rf /opt/hostedtoolcache/PyPy
-#           sudo rm -rf /opt/hostedtoolcache/node
+          # Remove unnecessary files to free up space
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /opt/hostedtoolcache/PyPy
+          sudo rm -rf /opt/hostedtoolcache/node
           
-#           # Clean up package managers
-#           sudo apt-get clean
-#           sudo apt-get autoclean
-#           docker system prune -af --volumes
+          # Clean up package managers
+          sudo apt-get clean
+          sudo apt-get autoclean
+          docker system prune -af --volumes
           
-#           echo "Disk space after cleanup:"
-#           df -h
+          echo "Disk space after cleanup:"
+          df -h
 
-#       - name: Checkout code
-#         uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-#       - name: Set up Docker Buildx
-#         uses: docker/setup-buildx-action@v2
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
 
-#       - name: Log in to Azure Container Registry
-#         uses: docker/login-action@v2
-#         with:
-#           registry: ${{ env.REGISTRY_LOGIN_SERVER }}
-#           username: ${{ env.REGISTRY_USERNAME }}
-#           password: ${{ env.REGISTRY_PASSWORD }}
+      - name: Log in to Azure Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ env.REGISTRY_LOGIN_SERVER }}
+          username: ${{ env.REGISTRY_USERNAME }}
+          password: ${{ env.REGISTRY_PASSWORD }}
 
-#       - name: Extract metadata
-#         id: meta
-#         uses: docker/metadata-action@v4
-#         with:
-#           images: ${{ env.REGISTRY_LOGIN_SERVER }}/${{ env.IMAGE_REPO }}
-#           tags: |
-#             type=ref,event=branch
-#             type=semver,pattern={{version}}
-#             type=semver,pattern={{major}}.{{minor}}
-#             type=sha,prefix={{branch}}-
-#             type=raw,value=latest,enable={{is_default_branch}}
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ${{ env.REGISTRY_LOGIN_SERVER }}/${{ env.IMAGE_REPO }}
+          tags: |
+            type=ref,event=branch
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=sha,prefix={{branch}}-
+            type=raw,value=latest,enable={{is_default_branch}}
 
-#       - name: Cleanup before build
-#         run: |
-#           echo "Final disk space check before build:"
-#           df -h
-#           docker system prune -af --volumes || true
-#           rm -rf /tmp/* || true
+      - name: Cleanup before build
+        run: |
+          echo "Final disk space check before build:"
+          df -h
+          docker system prune -af --volumes || true
+          rm -rf /tmp/* || true
 
-#       - name: Build and push Docker image
-#         uses: docker/build-push-action@v4
-#         with:
-#           context: .
-#           file: ./Dockerfile
-#           push: true
-#           tags: ${{ steps.meta.outputs.tags }}
-#           labels: ${{ steps.meta.outputs.labels }}
-#           cache-from: type=gha
-#           cache-to: type=gha,mode=max
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
-#   deploy:
-#     runs-on: ubuntu-latest
-#     needs: build-and-push
-#     if: success()
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build-and-push
+    if: success()
 
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v3
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-#       - name: Azure Login
-#         uses: azure/login@v1
-#         with:
-#           creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-#       - name: Configure App Service Environment Variables
-#         run: |
-#           az webapp config appsettings set \
-#             --resource-group ${{ env.RESOURCE_GROUP }} \
-#             --name ${{ env.APP_SERVICE_NAME }} \
-#             --settings \
-#             GOOGLE_API_KEY="${{ secrets.GOOGLE_API_KEY }}" \
-#             QDRANT_URL="${{ secrets.QDRANT_URL }}" \
-#             QDRANT_API_KEY="${{ secrets.QDRANT_API_KEY }}" \
-#             SUPABASE_URL="${{ secrets.SUPABASE_URL }}" \
-#             SUPABASE_KEY="${{ secrets.SUPABASE_KEY }}" \
-#             SUPABASE_SERVICE_KEY="${{ secrets.SUPABASE_SERVICE_KEY }}" \
-#             SECRET_KEY="${{ secrets.SECRET_KEY }}" \
-#             COLLECTION_NAME="naga_ordinances" \
-#             DATA_DIR="/app/index" \
-#             WEBSITES_PORT="8080"
+      - name: Configure App Service Environment Variables
+        run: |
+          az webapp config appsettings set \
+            --resource-group ${{ env.RESOURCE_GROUP }} \
+            --name ${{ env.APP_SERVICE_NAME }} \
+            --settings \
+            GOOGLE_API_KEY="${{ secrets.GOOGLE_API_KEY }}" \
+            QDRANT_URL="${{ secrets.QDRANT_URL }}" \
+            QDRANT_API_KEY="${{ secrets.QDRANT_API_KEY }}" \
+            SUPABASE_URL="${{ secrets.SUPABASE_URL }}" \
+            SUPABASE_KEY="${{ secrets.SUPABASE_KEY }}" \
+            SUPABASE_SERVICE_KEY="${{ secrets.SUPABASE_SERVICE_KEY }}" \
+            SECRET_KEY="${{ secrets.SECRET_KEY }}" \
+            COLLECTION_NAME="naga_ordinances" \
+            DATA_DIR="/app/index" \
+            WEBSITES_PORT="8080"
 
-#       - name: Deploy to Azure App Service
-#         uses: azure/webapps-deploy@v2
-#         with:
-#           app-name: ${{ env.APP_SERVICE_NAME }}
-#           images: ${{ env.REGISTRY_LOGIN_SERVER }}/${{ env.IMAGE_REPO }}:latest
+      - name: Deploy to Azure App Service
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ env.APP_SERVICE_NAME }}
+          images: ${{ env.REGISTRY_LOGIN_SERVER }}/${{ env.IMAGE_REPO }}:latest
 
-#       - name: Azure logout
-#         run: |
-#           az logout
+      - name: Azure logout
+        run: |
+          az logout
 
-#   health-check:
-#     runs-on: ubuntu-latest
-#     needs: deploy
-#     if: success()
+  health-check:
+    runs-on: ubuntu-latest
+    needs: deploy
+    if: success()
 
-#     steps:
-#       - name: Wait for deployment
-#         run: sleep 60
+    steps:
+      - name: Wait for deployment
+        run: sleep 60
 
-#       - name: Check startup status endpoint
-#         run: |
-#           startup_url="${{ secrets.AZURE_APP_URL }}/startup-status"
-#           echo "📋 Checking startup status at: $startup_url"
-#           curl -s "$startup_url" | head -100
-#           echo ""
+      - name: Check startup status endpoint
+        run: |
+          startup_url="${{ secrets.AZURE_APP_URL }}/startup-status"
+          echo "📋 Checking startup status at: $startup_url"
+          curl -s "$startup_url" | head -100
+          echo ""
 
-#       - name: Check application health
-#         run: |
-#           health_url="${{ secrets.AZURE_APP_URL }}/health"
-#           max_attempts=30
-#           attempt=1
+      - name: Check application health
+        run: |
+          health_url="${{ secrets.AZURE_APP_URL }}/health"
+          max_attempts=30
+          attempt=1
           
-#           while [ $attempt -le $max_attempts ]; do
-#             echo "Health check attempt $attempt/$max_attempts..."
-#             response=$(curl -s -w "\n%{http_code}" "$health_url")
-#             http_code=$(echo "$response" | tail -n 1)
-#             body=$(echo "$response" | head -n -1)
+          while [ $attempt -le $max_attempts ]; do
+            echo "Health check attempt $attempt/$max_attempts..."
+            response=$(curl -s -w "\n%{http_code}" "$health_url")
+            http_code=$(echo "$response" | tail -n 1)
+            body=$(echo "$response" | head -n -1)
             
-#             echo "HTTP Response: $http_code"
-#             echo "Body: $body"
-#             echo ""
+            echo "HTTP Response: $http_code"
+            echo "Body: $body"
+            echo ""
             
-#             if [ "$http_code" = "200" ]; then
-#               echo "✅ Application is healthy!"
-#               exit 0
-#             fi
+            if [ "$http_code" = "200" ]; then
+              echo "✅ Application is healthy!"
+              exit 0
+            fi
             
-#             echo "Application not ready yet (HTTP $http_code). Retrying..."
-#             sleep 10
-#             attempt=$((attempt + 1))
-#           done
+            echo "Application not ready yet (HTTP $http_code). Retrying..."
+            sleep 10
+            attempt=$((attempt + 1))
+          done
           
-#           echo "❌ Application failed health check after $max_attempts attempts"
-#           echo "📋 Final diagnostic check..."
-#           curl -s "${{ secrets.AZURE_APP_URL }}/startup-status" || true
-#           exit 1
+          echo "❌ Application failed health check after $max_attempts attempts"
+          echo "📋 Final diagnostic check..."
+          curl -s "${{ secrets.AZURE_APP_URL }}/startup-status" || true
+          exit 1
 
-#       - name: Notify Slack (Optional)
-#         if: always()
-#         uses: slackapi/slack-github-action@v1.24.0
-#         with:
-#           payload: |
-#             {
-#               "text": "Deployment to Azure App Service: ${{ job.status }}",
-#               "blocks": [
-#                 {
-#                   "type": "section",
-#                   "text": {
-#                     "type": "mrkdwn",
-#                     "text": "*Deployment Status: ${{ job.status }}*\nRepository: ${{ github.repository }}\nBranch: ${{ github.ref }}\nCommit: ${{ github.sha }}"
-#                   }
-#                 }
-#               ]
-#             }
-#         env:
-#           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+      - name: Notify Slack (Optional)
+        if: always()
+        uses: slackapi/slack-github-action@v1.24.0
+        with:
+          payload: |
+            {
+              "text": "Deployment to Azure App Service: ${{ job.status }}",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "*Deployment Status: ${{ job.status }}*\nRepository: ${{ github.repository }}\nBranch: ${{ github.ref }}\nCommit: ${{ github.sha }}"
+                  }
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
