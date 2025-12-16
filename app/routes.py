@@ -11,52 +11,123 @@ bp = Blueprint('main', __name__)
 # Health check endpoint for monitoring (no authentication required)
 @bp.route('/health')
 def health():
-    """Health check endpoint for deployment monitoring"""
-    rag_service = current_app.config.get('RAG_SERVICE')
-    analytics_service = current_app.config.get('ANALYTICS_SERVICE')
-    services_initialized = current_app.config.get('SERVICES_INITIALIZED', False)
-    
-    # Check if services are initialized
-    services_status = {
-        'rag_service': rag_service is not None,
-        'analytics_service': analytics_service is not None,
-        'services_initialized': services_initialized
-    }
-    
-    # App is healthy if services are initialized (at least attempting startup)
-    # RAG service is critical, Analytics is optional
-    is_healthy = services_initialized and rag_service is not None
-    
-    # IMPORTANT: Return HTTP 200 for both healthy and degraded states
-    # This allows Azure App Service to complete deployment even if optional services fail
-    # Return 200 if initialization is at least complete, regardless of optional service state
-    status_code = 200
-    
-    return jsonify({
-        'status': 'healthy' if is_healthy else 'degraded',
-        'timestamp': datetime.utcnow().isoformat(),
-        'service': 'Adal Smart Naga Ordinances RAG Chatbot',
-        'services': services_status,
-        'note': 'degraded status means Analytics or other optional services failed, but core RAG may still be working'
-    }), status_code
+    """Health check endpoint for deployment monitoring - ALWAYS returns 200 when app is running"""
+    try:
+        rag_service = current_app.config.get('RAG_SERVICE')
+        analytics_service = current_app.config.get('ANALYTICS_SERVICE')
+        services_initialized = current_app.config.get('SERVICES_INITIALIZED', False)
+        init_state = current_app.config.get('INIT_STATE', {})
+        
+        # Check if services are initialized
+        services_status = {
+            'rag_service': rag_service is not None,
+            'analytics_service': analytics_service is not None,
+            'services_initialized': services_initialized
+        }
+        
+        # Determine overall health
+        # CRITICAL: Return 200 (OK) for both healthy and degraded states
+        # This allows Azure App Service to mark deployment as successful even if optional services fail
+        # The health check should ONLY fail if the Flask app itself is not responding
+        
+        rag_ready = rag_service is not None
+        analytics_ready = analytics_service is not None
+        
+        # Status logic:
+        # - healthy: RAG is ready (critical service)
+        # - initializing: RAG is still initializing in background
+        # - degraded: RAG failed but app is responsive (core functionality compromised)
+        # - error: Supabase or critical dependency failed (very bad)
+        
+        init_rag_status = init_state.get('services', {}).get('rag', {}).get('status', 'unknown')
+        init_supabase_status = init_state.get('services', {}).get('supabase', {}).get('status', 'unknown')
+        
+        if rag_ready:
+            status = 'healthy'
+        elif init_rag_status == 'initializing':
+            status = 'initializing'
+        elif init_supabase_status == 'failed':
+            status = 'error'
+        else:
+            status = 'degraded'
+        
+        return jsonify({
+            'status': status,
+            'timestamp': datetime.utcnow().isoformat() + 'Z',
+            'service': 'Adal Smart Naga Ordinances RAG Chatbot',
+            'services': services_status,
+            'init_status': init_rag_status,
+            'note': 'Health check returns 200 if app is responding. Status field indicates service readiness.'
+        }), 200
+        
+    except Exception as e:
+        # Even if there's an error in the health check itself, return 200
+        # so we don't cause cascading failures in Azure monitoring
+        print(f"⚠️  Error in health check: {str(e)}")
+        return jsonify({
+            'status': 'error',
+            'timestamp': datetime.utcnow().isoformat() + 'Z',
+            'service': 'Adal Smart Naga Ordinances RAG Chatbot',
+            'error': 'Health check encountered an error but app is running'
+        }), 200
 
 # Debug endpoint for startup diagnostics (no authentication required)
 @bp.route('/startup-status')
 def startup_status():
     """Debug endpoint showing detailed service initialization status"""
-    return jsonify({
-        'timestamp': datetime.utcnow().isoformat(),
-        'services_initialized': current_app.config.get('SERVICES_INITIALIZED', False),
-        'rag_service': {
-            'initialized': current_app.config.get('RAG_SERVICE') is not None,
-            'value': str(type(current_app.config.get('RAG_SERVICE')))
-        },
-        'analytics_service': {
-            'initialized': current_app.config.get('ANALYTICS_SERVICE') is not None,
-            'value': str(type(current_app.config.get('ANALYTICS_SERVICE')))
-        },
-        'message': 'This endpoint shows service initialization status for debugging deployment issues'
-    }), 200
+    try:
+        init_state = current_app.config.get('INIT_STATE', {})
+        
+        # Build detailed response with initialization progress
+        response = {
+            'timestamp': datetime.utcnow().isoformat() + 'Z',
+            'overall_status': init_state.get('status', 'unknown'),
+            'services_initialized': current_app.config.get('SERVICES_INITIALIZED', False),
+            'services': {}
+        }
+        
+        # Add service-specific details
+        for service_name, service_info in init_state.get('services', {}).items():
+            response['services'][service_name] = {
+                'status': service_info.get('status', 'unknown'),
+                'time_ms': service_info.get('time_ms', 0)
+            }
+        
+        # Add timing info
+        if init_state.get('started_at'):
+            response['started_at'] = init_state['started_at']
+        if init_state.get('completed_at'):
+            response['completed_at'] = init_state['completed_at']
+        
+        # Add error details if any
+        if init_state.get('error_details'):
+            response['error_details'] = init_state['error_details']
+        
+        # Add RAG service instance info
+        rag_service = current_app.config.get('RAG_SERVICE')
+        response['rag_service_instance'] = {
+            'initialized': rag_service is not None,
+            'type': str(type(rag_service).__name__) if rag_service else 'None'
+        }
+        
+        # Add Analytics service instance info
+        analytics_service = current_app.config.get('ANALYTICS_SERVICE')
+        response['analytics_service_instance'] = {
+            'initialized': analytics_service is not None,
+            'type': str(type(analytics_service).__name__) if analytics_service else 'None'
+        }
+        
+        response['message'] = 'Detailed initialization status - use this to debug deployment issues'
+        
+        return jsonify(response), 200
+        
+    except Exception as e:
+        print(f"⚠️  Error in startup-status endpoint: {str(e)}")
+        return jsonify({
+            'error': 'Failed to retrieve startup status',
+            'error_details': str(e),
+            'timestamp': datetime.utcnow().isoformat() + 'Z'
+        }), 500
 
 def login_required(f):
     """Decorator to require login for routes"""

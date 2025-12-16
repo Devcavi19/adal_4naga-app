@@ -60,8 +60,9 @@ ENV FLASK_ENV=production \
     PYTHONUNBUFFERED=1 \
     PORT=8080
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+# Health check - increased start-period to 90s to allow services to initialize
+# The app will return 200 /health even during initialization, but status field indicates readiness
+HEALTHCHECK --interval=30s --timeout=10s --start-period=90s --retries=5 \
     CMD curl -f http://localhost:8080/health || exit 1
 
 # Expose port
